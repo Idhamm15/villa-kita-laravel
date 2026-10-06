@@ -3,6 +3,8 @@
 ])
 
 @php
+    $id = request()->route('id');
+
     $steps = [
         [
             'title' => 'Book',
@@ -12,21 +14,21 @@
         [
             'title' => 'Process',
             'icon' => 'fa-box',
-            'href' => '/booking/process',
+            'href' => "/booking/{$id}/process",
         ],
         [
             'title' => 'Pay',
             'icon' => 'fa-credit-card',
-            'href' => '/booking/payment',
+            'href' => "/booking/{$id}/payment",
         ],
-        // [
-        //     'title' => 'Finish',
-        //     'icon' => 'fa-circle-check',
-        //     'href' => '/booking/success',
-        // ],
     ];
 @endphp
 
+{{-- // [
+//     'title' => 'Finish',
+//     'icon' => 'fa-circle-check',
+//     'href' => '/booking/success',
+// ], --}}
 <div class="mb-10">
     <div class="flex items-center justify-between">
 
@@ -37,7 +39,7 @@
                 $active = $index === $currentStep;
             @endphp
 
-            <div class="flex flex-1 items-center">
+            <div class="flex items-center flex-1">
 
                 {{-- Step --}}
                 <a

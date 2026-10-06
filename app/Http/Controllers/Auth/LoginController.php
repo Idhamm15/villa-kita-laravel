@@ -38,9 +38,9 @@ class LoginController extends Controller
         ]);
         if(auth()->attempt(['email'=>$input["email"], 'password'=>$input['password']]))
         {
-            if(auth()->user()->role == 'ADMIN' || auth()->user()->role == 'SUPER ADMIN')
+            if(auth()->user()->role == 'ADMIN' || auth()->user()->role == 'OWNER')
             {
-                return redirect('/admin');
+                return redirect('/dashboard');
             }
             // else if(auth()->user()->role == 'SUPER ADMIN')
             // {

@@ -1,5 +1,5 @@
 <header class="w-full bg-white shadow-sm">
-    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+    <div class="flex items-center justify-between h-20 px-6 mx-auto max-w-7xl">
 
         {{-- ==================== LOGO ==================== --}}
         <a
@@ -9,7 +9,7 @@
             <img
                 src="{{ asset('img/logo.png') }}"
                 alt="Villa Kita"
-                class="h-20 w-16 object-contain"
+                class="object-contain w-16 h-20"
             >
 
             <span>Villa Kita</span>
@@ -17,7 +17,7 @@
 
 
         {{-- ==================== MENU ==================== --}}
-        <nav class="hidden items-center gap-4 md:flex">
+        <nav class="items-center hidden gap-4 md:flex">
 
             {{-- Beranda --}}
             <a
@@ -28,7 +28,7 @@
                     : 'text-black hover:bg-sky-50 hover:text-sky-500'
                 }}"
             >
-                <i class="fa-solid fa-house text-sm"></i>
+                <i class="text-sm fa-solid fa-house"></i>
                 <span>Beranda</span>
             </a>
 
@@ -42,7 +42,7 @@
                     : 'text-black hover:bg-sky-50 hover:text-sky-500'
                 }}"
             >
-                <i class="fa-solid fa-house-chimney text-sm"></i>
+                <i class="text-sm fa-solid fa-house-chimney"></i>
                 <span>Sewa Villa</span>
             </a>
 
@@ -56,7 +56,7 @@
                     : 'text-black hover:bg-sky-50 hover:text-sky-500'
                 }}"
             >
-                <i class="fa-solid fa-person-running text-sm"></i>
+                <i class="text-sm fa-solid fa-person-running"></i>
                 <span>Trip</span>
             </a>
 
@@ -70,13 +70,13 @@
                     : 'text-black hover:bg-sky-50 hover:text-sky-500'
                 }}"
             >
-                <i class="fa-solid fa-pen text-sm"></i>
+                <i class="text-sm fa-solid fa-pen"></i>
                 <span>Blog</span>
             </a>
 
 
             {{-- Tersimpan --}}
-            <a
+            {{-- <a
                 href="{{ url('/tersimpan') }}"
                 class="flex items-center gap-2 rounded-full px-4 py-2 text-lg font-medium transition-all duration-200
                 {{ request()->is('tersimpan*')
@@ -84,9 +84,9 @@
                     : 'text-black hover:bg-sky-50 hover:text-sky-500'
                 }}"
             >
-                <i class="fa-solid fa-bookmark text-sm"></i>
+                <i class="text-sm fa-solid fa-bookmark"></i>
                 <span>Tersimpan</span>
-            </a>
+            </a> --}}
 
 
             {{-- Kontak --}}
@@ -98,7 +98,7 @@
                     : 'text-black hover:bg-sky-50 hover:text-sky-500'
                 }}"
             >
-                <i class="fa-solid fa-phone text-sm"></i>
+                <i class="text-sm fa-solid fa-phone"></i>
                 <span>Kontak</span>
             </a>
 
@@ -112,15 +112,15 @@
 
                 {{-- ==================== USER DROPDOWN ==================== --}}
                 <div
-                    x-data="{ open: false }"
+                    id="user-dropdown-wrapper"
                     class="relative"
                 >
 
-                    {{-- User Button --}}
+                    {{-- ==================== USER BUTTON ==================== --}}
                     <button
                         type="button"
-                        @click="open = !open"
-                        class="flex items-center gap-3 rounded-full px-3 py-2 transition hover:bg-gray-100"
+                        id="user-dropdown-button"
+                        class="flex items-center gap-3 px-3 py-2 transition rounded-full hover:bg-gray-100"
                     >
 
                         {{-- Avatar --}}
@@ -129,23 +129,25 @@
                             <img
                                 src="{{ asset('storage/' . auth()->user()->image) }}"
                                 alt="{{ auth()->user()->fullname ?? auth()->user()->username }}"
-                                class="h-11 w-11 rounded-full object-cover"
+                                class="object-cover rounded-full h-11 w-11"
                             >
 
                         @else
 
                             <div
-                                class="flex h-11 w-11 items-center justify-center rounded-full bg-sky-500 text-lg font-semibold text-white"
+                                class="flex items-center justify-center text-lg font-semibold text-white rounded-full h-11 w-11 bg-sky-500"
                             >
-                                {{ strtoupper(
-                                    substr(
-                                        auth()->user()->fullname
-                                            ?? auth()->user()->username
-                                            ?? 'U',
-                                        0,
-                                        1
+                                {{
+                                    strtoupper(
+                                        substr(
+                                            auth()->user()->fullname
+                                                ?? auth()->user()->username
+                                                ?? 'U',
+                                            0,
+                                            1
+                                        )
                                     )
-                                ) }}
+                                }}
                             </div>
 
                         @endif
@@ -159,8 +161,8 @@
 
                         {{-- Arrow --}}
                         <i
-                            class="fa-solid fa-chevron-down text-xs text-gray-500 transition-transform duration-200"
-                            :class="{ 'rotate-180': open }"
+                            id="user-dropdown-arrow"
+                            class="text-xs text-gray-500 transition-transform duration-200 fa-solid fa-chevron-down"
                         ></i>
 
                     </button>
@@ -168,18 +170,16 @@
 
                     {{-- ==================== DROPDOWN ==================== --}}
                     <div
-                        x-show="open"
-                        x-transition
-                        @click.outside="open = false"
-                        class="absolute right-0 z-50 mt-2 w-52 overflow-hidden rounded-xl border border-gray-100 bg-white py-2 shadow-xl"
+                        id="user-dropdown-menu"
+                        class="absolute right-0 z-50 hidden py-2 mt-2 overflow-hidden bg-white border border-gray-100 shadow-xl w-52 rounded-xl"
                     >
 
                         {{-- Profile --}}
                         <a
-                            href="{{ url('/profile') }}"
+                            href="{{ url('/my/profil') }}"
                             class="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 transition hover:bg-gray-50 hover:text-sky-500"
                         >
-                            <i class="fa-solid fa-user w-5 text-gray-500"></i>
+                            <i class="w-5 text-gray-500 fa-solid fa-user"></i>
 
                             <span>Profile</span>
                         </a>
@@ -198,9 +198,9 @@
 
                             <button
                                 type="submit"
-                                class="flex w-full items-center gap-3 px-4 py-3 text-left text-sm text-red-600 transition hover:bg-red-50"
+                                class="flex items-center w-full gap-3 px-4 py-3 text-sm text-left text-red-600 transition hover:bg-red-50"
                             >
-                                <i class="fa-solid fa-right-from-bracket w-5"></i>
+                                <i class="w-5 fa-solid fa-right-from-bracket"></i>
 
                                 <span>Logout</span>
                             </button>
@@ -216,7 +216,7 @@
                 {{-- ==================== LOGIN ==================== --}}
                 <a
                     href="{{ url('/login') }}"
-                    class="flex items-center gap-2 rounded-lg bg-gray-300 px-8 py-3 text-lg font-semibold text-white transition hover:bg-gray-400"
+                    class="flex items-center gap-2 px-8 py-3 text-lg font-semibold text-white transition bg-gray-300 rounded-lg hover:bg-gray-400"
                 >
                     <i class="fa-solid fa-right-to-bracket"></i>
 
@@ -226,6 +226,68 @@
             @endauth
 
         </div>
+
+
+        {{-- ==================== PURE JAVASCRIPT ==================== --}}
+        @auth
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+
+                const button = document.getElementById('user-dropdown-button');
+                const menu = document.getElementById('user-dropdown-menu');
+                const arrow = document.getElementById('user-dropdown-arrow');
+                const wrapper = document.getElementById('user-dropdown-wrapper');
+
+                if (!button || !menu) {
+                    return;
+                }
+
+                // Toggle dropdown
+                button.addEventListener('click', function (event) {
+
+                    event.stopPropagation();
+
+                    const isOpen = !menu.classList.contains('hidden');
+
+                    if (isOpen) {
+                        menu.classList.add('hidden');
+                        arrow?.classList.remove('rotate-180');
+                    } else {
+                        menu.classList.remove('hidden');
+                        arrow?.classList.add('rotate-180');
+                    }
+
+                });
+
+
+                // Klik di luar dropdown
+                document.addEventListener('click', function (event) {
+
+                    if (!wrapper.contains(event.target)) {
+
+                        menu.classList.add('hidden');
+                        arrow?.classList.remove('rotate-180');
+
+                    }
+
+                });
+
+
+                // Escape untuk menutup dropdown
+                document.addEventListener('keydown', function (event) {
+
+                    if (event.key === 'Escape') {
+
+                        menu.classList.add('hidden');
+                        arrow?.classList.remove('rotate-180');
+
+                    }
+
+                });
+
+            });
+        </script>
+        @endauth
 
     </div>
 </header>

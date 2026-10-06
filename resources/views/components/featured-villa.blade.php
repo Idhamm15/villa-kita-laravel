@@ -65,33 +65,32 @@
 
 
         {{-- Villa List --}}
-        <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
+        <div class="grid grid-cols-1 gap-6 mt-10 md:grid-cols-2 lg:grid-cols-5">
 
-            @foreach ($villas as $villa)
+            @foreach ($data as $villa)
 
                 <div
-                    class="overflow-hidden rounded-xl bg-white shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    class="overflow-hidden transition duration-300 bg-white shadow-2xl rounded-xl hover:-translate-y-1 hover:shadow-lg"
                 >
 
                     {{-- Image --}}
-                    <div class="relative h-60 w-full">
+                    <div class="relative w-full h-60">
 
                         <img
-                            src="{{ $villa['image'] }}"
+                            src="{{ $villa['thumbnail'] ? asset('storage/' . $villa['thumbnail']) : '' }}"
                             alt="{{ $villa['title'] }}"
-                            class="h-full w-full object-cover"
+                            class="object-cover w-full h-full"
                         >
-
                     </div>
 
 
                     {{-- Content --}}
-                    <div class="space-y-3 p-4">
+                    <div class="p-4 space-y-3">
 
                         {{-- Title & Location --}}
                         <div>
 
-                            <h3 class="line-clamp-2 text-xl font-semibold text-gray-700">
+                            <h3 class="text-xl font-semibold text-gray-700 line-clamp-2">
                                 {{ $villa['title'] }}
                             </h3>
 
@@ -132,8 +131,10 @@
 
                         {{-- Detail --}}
                         <a
-                            href="{{ url('/' . $villa['link'] . '/' . $villa['id']) }}"
-                            class="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-sky-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-sky-700"
+                            href="{{ $villa['type'] === 'VILLA'
+                                ? url('/sewa-villa/' . $villa['id'])
+                                : url('/trip/' . $villa['id']) }}"
+                            class="inline-flex items-center justify-center w-full px-4 py-3 mt-4 text-sm font-semibold text-white transition rounded-xl bg-sky-600 hover:bg-sky-700"
                         >
                             Lihat Detail
                         </a>

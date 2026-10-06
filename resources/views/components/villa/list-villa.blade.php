@@ -1,60 +1,7 @@
-@php
-    $villas = [
-        [
-            'id' => 1,
-            'name' => 'Villa Harmoni Tegal',
-            'thumbnail' => 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80',
-            'price' => 750000,
-            'location' => 'KOTA TEGAL',
-            'capacity' => 4,
-        ],
-        [
-            'id' => 2,
-            'name' => 'Villa Bahagia Tegal',
-            'thumbnail' => 'https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=800&q=80',
-            'price' => 850000,
-            'location' => 'KABUPATEN TEGAL',
-            'capacity' => 6,
-        ],
-        [
-            'id' => 3,
-            'name' => 'Villa Puncak Indah',
-            'thumbnail' => 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=800&q=80',
-            'price' => 950000,
-            'location' => 'KOTA TEGAL',
-            'capacity' => 2,
-        ],
-        [
-            'id' => 4,
-            'name' => 'Villa Keluarga Sejahtera',
-            'thumbnail' => 'https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=800&q=80',
-            'price' => 1200000,
-            'location' => 'KABUPATEN TEGAL',
-            'capacity' => 6,
-        ],
-        [
-            'id' => 5,
-            'name' => 'Villa Sunset View',
-            'thumbnail' => 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80',
-            'price' => 650000,
-            'location' => 'KOTA TEGAL',
-            'capacity' => 4,
-        ],
-        [
-            'id' => 6,
-            'name' => 'Villa Asri Tegal',
-            'thumbnail' => 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80',
-            'price' => 900000,
-            'location' => 'KABUPATEN TEGAL',
-            'capacity' => 4,
-        ],
-    ];
-@endphp
+<section id="blog-section" class="py-10 bg-gray-100">
 
-
-<section class="bg-gray-100 py-10">
-
-    <div class="mx-auto max-w-7xl px-5">
+    
+    <div class="px-5 mx-auto max-w-7xl">
 
         <div class="grid gap-8 lg:grid-cols-12">
 
@@ -62,18 +9,18 @@
             <aside class="space-y-5 lg:col-span-3">
 
                 {{-- Search --}}
-                <div class="rounded-lg bg-white p-4 shadow">
+                <div class="p-4 bg-white rounded-lg shadow">
 
                     <div class="relative">
 
                         <i
-                            class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400"
+                            class="absolute text-gray-400 fa-solid fa-magnifying-glass left-3 top-3"
                         ></i>
 
                         <input
                             type="text"
                             placeholder="Type villa name"
-                            class="w-full rounded-md border py-2 pl-10 pr-3 text-sm outline-none focus:border-blue-500 focus:ring-0"
+                            class="w-full py-2 pl-10 pr-3 text-sm border rounded-md outline-none focus:border-blue-500 focus:ring-0"
                         >
 
                     </div>
@@ -82,7 +29,7 @@
 
 
                 {{-- Capacity --}}
-                <div class="rounded-lg bg-white p-4 shadow">
+                <div class="p-4 bg-white rounded-lg shadow">
 
                     <h3 class="mb-4 font-semibold text-gray-700">
                         Villa capacity
@@ -90,10 +37,10 @@
 
                     <div class="space-y-3">
 
-                        <label class="flex cursor-pointer items-center gap-3">
+                        <label class="flex items-center gap-3 cursor-pointer">
                             <input
                                 type="checkbox"
-                                class="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                                class="text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                             >
 
                             <span class="text-gray-700">
@@ -101,10 +48,10 @@
                             </span>
                         </label>
 
-                        <label class="flex cursor-pointer items-center gap-3">
+                        <label class="flex items-center gap-3 cursor-pointer">
                             <input
                                 type="checkbox"
-                                class="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                                class="text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                             >
 
                             <span class="text-gray-700">
@@ -112,10 +59,10 @@
                             </span>
                         </label>
 
-                        <label class="flex cursor-pointer items-center gap-3">
+                        <label class="flex items-center gap-3 cursor-pointer">
                             <input
                                 type="checkbox"
-                                class="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                                class="text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                             >
 
                             <span class="text-gray-700">
@@ -129,7 +76,7 @@
 
 
                 {{-- Location --}}
-                <div class="rounded-lg bg-white p-4 shadow">
+                <div class="p-4 bg-white rounded-lg shadow">
 
                     <h3 class="mb-4 font-semibold text-gray-700">
                         Locations
@@ -137,12 +84,12 @@
 
                     <div class="space-y-4">
 
-                        <label class="flex cursor-pointer items-center gap-3">
+                        <label class="flex items-center gap-3 cursor-pointer">
 
                             <input
                                 type="checkbox"
                                 checked
-                                class="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                                class="text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                             >
 
                             <span class="text-gray-700">
@@ -152,11 +99,11 @@
                         </label>
 
 
-                        <label class="flex cursor-pointer items-start gap-3">
+                        <label class="flex items-start gap-3 cursor-pointer">
 
                             <input
                                 type="checkbox"
-                                class="mt-1 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                                class="mt-1 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                             >
 
                             <div>
@@ -174,11 +121,11 @@
                         </label>
 
 
-                        <label class="flex cursor-pointer items-start gap-3">
+                        <label class="flex items-start gap-3 cursor-pointer">
 
                             <input
                                 type="checkbox"
-                                class="mt-1 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                                class="mt-1 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
                             >
 
                             <div>
@@ -203,7 +150,7 @@
                 {{-- Filter --}}
                 <button
                     type="button"
-                    class="w-full rounded-lg bg-orange-500 py-3 font-semibold text-white transition hover:bg-orange-600"
+                    class="w-full py-3 font-semibold text-white transition bg-orange-500 rounded-lg hover:bg-orange-600"
                 >
                     Filter
                 </button>
@@ -218,80 +165,156 @@
                     Showing villa in all locations
                 </h2>
 
+                {{-- Product Wrapper --}}
+                <div class="relative">
 
-                {{-- Villa Grid --}}
-                <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {{-- Loading --}}
+                    <x-loading
+                        id="villa-loading"
+                        text="Memuat villa..."
+                        duration="3000"
+                    />
 
-                    @foreach ($villas as $villa)
+                    {{-- Villa Grid --}}
+                    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-                        <div
-                            class="overflow-hidden rounded-lg bg-white shadow transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-                        >
+                        @foreach ($data as $villa)
 
-                            {{-- Image --}}
-                            <div class="relative h-52">
+                            <div
+                                class="overflow-hidden transition duration-300 bg-white rounded-lg shadow hover:-translate-y-1 hover:shadow-lg"
+                            >
 
-                                <img
-                                    src="{{ $villa['thumbnail'] }}"
-                                    alt="{{ $villa['name'] }}"
-                                    class="h-full w-full object-cover"
-                                >
+                                {{-- Image --}}
+                                <div class="relative h-52">
 
-                            </div>
-
-
-                            {{-- Content --}}
-                            <div class="p-4">
-
-                                <a
-                                    href="{{ url('/sewa-villa/' . $villa['id']) }}"
-                                    class="line-clamp-2 text-lg font-bold leading-6 text-gray-700 transition hover:text-blue-600"
-                                >
-                                    {{ $villa['name'] }}
-                                </a>
-
-
-                                {{-- Duration --}}
-                                <div class="mt-2 flex items-center gap-1 text-sm text-orange-500">
-
-                                    <i class="fa-regular fa-clock"></i>
-
-                                    <span>
-                                        24 Hours
-                                    </span>
+                                    <img
+                                        src="{{ asset('storage/' . $villa['thumbnail']) }}"
+                                        alt="{{ $villa['name'] }}"
+                                        class="object-cover w-full h-full"
+                                    >
 
                                 </div>
 
+                                {{-- Content --}}
+                                <div class="p-4">
 
-                                {{-- Price --}}
-                                <p class="mt-2 text-sm text-gray-500">
+                                    <a
+                                        href="{{ url('/sewa-villa/' . $villa['id']) }}"
+                                        class="text-lg font-bold leading-6 text-gray-700 transition line-clamp-2 hover:text-blue-600"
+                                    >
+                                        {{ $villa['name'] }}
+                                    </a>
 
-                                    Menu start from
+                                    {{-- Duration --}}
+                                    <div class="flex items-center gap-1 mt-2 text-sm text-orange-500">
 
-                                    <span class="font-semibold text-blue-600">
-                                        Rp {{ number_format($villa['price'], 0, ',', '.') }}
-                                    </span>
+                                        <i class="fa-regular fa-clock"></i>
 
-                                </p>
+                                        <span>
+                                            24 Hours
+                                        </span>
+
+                                    </div>
+
+                                    {{-- Price --}}
+                                    <p class="mt-2 text-sm text-gray-500">
+
+                                        Menu start from
+
+                                        <span class="font-semibold text-blue-600">
+                                            Rp {{ number_format($villa['price'], 0, ',', '.') }}
+                                        </span>
+
+                                    </p>
+
+                                    {{-- Detail --}}
+                                    <a
+                                        href="{{ $villa['type'] === 'VILLA'
+                                            ? url('/sewa-villa/' . $villa['id'])
+                                            : url('/trip/' . $villa['id']) }}"
+                                        class="inline-flex items-center justify-center w-full px-4 py-3 mt-4 text-sm font-semibold text-white transition rounded-xl bg-sky-600 hover:bg-sky-700"
+                                    >
+                                        Lihat Detail
+                                    </a>
+
+                                </div>
 
                             </div>
 
-                        </div>
+                        @endforeach
 
-                    @endforeach
+                    </div>
 
-                </div>
+                    {{-- Pagination --}}
+                    <div class="flex items-center justify-center gap-2 mt-10">
+
+                        {{-- Previous --}}
+                        @if ($data->onFirstPage())
+
+                            <span
+                                class="flex items-center justify-center w-10 h-10 text-gray-400 bg-gray-100 rounded-full"
+                            >
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+
+                        @else
+
+                            <a
+                                href="{{ $data->previousPageUrl() }}"
+                                class="flex items-center justify-center w-10 h-10 text-gray-600 transition bg-white border rounded-full hover:bg-blue-500 hover:text-white"
+                            >
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </a>
+
+                        @endif
 
 
-                {{-- Pagination --}}
-                <div class="mt-10 flex justify-center">
+                        {{-- Pages --}}
+                        @foreach ($data->getUrlRange(1, $data->lastPage()) as $page => $url)
 
-                    <button
-                        type="button"
-                        class="h-10 w-10 rounded-full bg-blue-400 font-semibold text-white shadow"
-                    >
-                        1
-                    </button>
+                            @if ($page == $data->currentPage())
+
+                                <span
+                                    class="flex items-center justify-center w-10 h-10 font-semibold text-white bg-blue-500 rounded-full shadow"
+                                >
+                                    {{ $page }}
+                                </span>
+
+                            @else
+
+                                <a
+                                    href="{{ $url }}"
+                                    class="flex items-center justify-center w-10 h-10 font-semibold text-gray-600 transition bg-white border rounded-full hover:bg-blue-500 hover:text-white"
+                                >
+                                    {{ $page }}
+                                </a>
+
+                            @endif
+
+                        @endforeach
+
+
+                        {{-- Next --}}
+                        @if ($data->hasMorePages())
+
+                            <a
+                                href="{{ $data->nextPageUrl() }}"
+                                class="flex items-center justify-center w-10 h-10 text-gray-600 transition bg-white border rounded-full hover:bg-blue-500 hover:text-white"
+                            >
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+
+                        @else
+
+                            <span
+                                class="flex items-center justify-center w-10 h-10 text-gray-400 bg-gray-100 rounded-full"
+                            >
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+
+                        @endif
+
+                    </div>
 
                 </div>
 

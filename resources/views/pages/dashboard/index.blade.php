@@ -14,22 +14,22 @@
 
     $statistics = [
         'totalBooking' => [
-            'value' => 128,
+            'value' => $total_booking,
             'percentage' => 12,
         ],
 
         'totalOwner' => [
-            'value' => 24,
+            'value' => $total_owner,
             'percentage' => 8,
         ],
 
         'totalProperty' => [
-            'value' => 56,
+            'value' => $total_property,
             'percentage' => 5,
         ],
 
         'totalRevenue' => [
-            'value' => 128500000,
+            'value' => $total_revenue,
             'percentage' => 15,
         ],
     ];
@@ -228,48 +228,43 @@
         {{-- Booking --}}
         <div class="w-full overflow-x-auto">
 
-            @forelse ($latestBookings as $booking)
+            @if ($latest_bookings->count() > 0)
 
-                @if ($loop->first)
+                <table class="w-full">
 
-                    <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-gray-200 bg-gray-50">
 
-                        <thead>
+                            <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
+                                Booking
+                            </th>
 
-                            <tr class="border-b border-gray-200 bg-gray-50">
+                            <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
+                                Tamu
+                            </th>
 
-                                <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
-                                    Booking
-                                </th>
+                            <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
+                                Properti
+                            </th>
 
-                                <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
-                                    Tamu
-                                </th>
+                            <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
+                                Check-in / Check-out
+                            </th>
 
-                                <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
-                                    Properti
-                                </th>
+                            <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
+                                Total
+                            </th>
 
-                                <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
-                                    Check-in / Check-out
-                                </th>
+                            <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
+                                Status
+                            </th>
 
-                                <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
-                                    Total
-                                </th>
+                        </tr>
+                    </thead>
 
-                                <th class="px-6 py-4 text-sm font-semibold text-left text-gray-600">
-                                    Status
-                                </th>
+                    <tbody>
 
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                @endif
-
+                        @foreach ($latest_bookings as $booking)
 
                             <tr class="transition border-b border-gray-100 hover:bg-gray-50">
 
@@ -277,11 +272,11 @@
                                 <td class="px-6 py-5">
 
                                     <div class="font-semibold text-gray-900">
-                                        {{ $booking['bookingCode'] }}
+                                        {{ $booking['order_id'] }}
                                     </div>
 
                                     <div class="mt-1 text-xs text-gray-400">
-                                        {{ \Carbon\Carbon::parse($booking['createdAt'])->locale('id')->translatedFormat('d M Y') }}
+                                        {{ \Carbon\Carbon::parse($booking['created_at'])->locale('id')->translatedFormat('d M Y') }}
                                     </div>
 
                                 </td>
@@ -291,7 +286,7 @@
                                 <td class="px-6 py-5">
 
                                     <div class="font-medium text-gray-900">
-                                        {{ $booking['nameGuest'] }}
+                                        {{ $booking['name_guest'] }}
                                     </div>
 
                                     <div class="mt-1 text-sm text-gray-500">
@@ -320,7 +315,7 @@
 
                                     <div class="text-sm font-medium text-gray-900">
 
-                                        {{ \Carbon\Carbon::parse($booking['checkIn'])->locale('id')->translatedFormat('d M Y') }}
+                                        {{ \Carbon\Carbon::parse($booking['check_in'])->locale('id')->translatedFormat('d M Y') }}
 
                                     </div>
 
@@ -328,13 +323,13 @@
 
                                         s/d
 
-                                        {{ \Carbon\Carbon::parse($booking['checkOut'])->locale('id')->translatedFormat('d M Y') }}
+                                        {{ \Carbon\Carbon::parse($booking['check_out'])->locale('id')->translatedFormat('d M Y') }}
 
                                     </div>
 
                                     <div class="mt-1 text-xs text-gray-400">
 
-                                        {{ $booking['totalGuest'] }} tamu
+                                        {{ $booking['total_guest'] }} tamu
 
                                     </div>
 
@@ -346,13 +341,13 @@
 
                                     <div class="font-semibold text-gray-900">
 
-                                        Rp {{ number_format($booking['totalPrice'], 0, ',', '.') }}
+                                        Rp {{ number_format($booking['total_price'], 0, ',', '.') }}
 
                                     </div>
 
                                     <div class="mt-1 text-xs text-gray-500">
 
-                                        {{ $booking['paymentMethod'] ?? '-' }}
+                                        {{ $booking['payment_method'] ?? '-' }}
 
                                     </div>
 
@@ -383,16 +378,52 @@
 
                             </tr>
 
+                        @endforeach
 
-                @if ($loop->last)
+                    </tbody>
 
-                        </tbody>
+                </table>
 
-                    </table>
 
-                @endif
+                {{-- PAGINATION --}}
+                <div class="flex flex-col gap-3 px-6 py-5 border-t border-gray-100 sm:flex-row sm:items-center sm:justify-between">
 
-            @empty
+                    {{-- INFO --}}
+                    <div class="text-sm text-gray-500">
+
+                        Menampilkan
+                        <span class="font-medium text-gray-700">
+                            {{ $latest_bookings->firstItem() ?? 0 }}
+                        </span>
+
+                        sampai
+
+                        <span class="font-medium text-gray-700">
+                            {{ $latest_bookings->lastItem() ?? 0 }}
+                        </span>
+
+                        dari
+
+                        <span class="font-medium text-gray-700">
+                            {{ $latest_bookings->total() }}
+                        </span>
+
+                        booking
+
+                    </div>
+
+
+                    {{-- BUTTON --}}
+                    <div>
+
+                        {{ $latest_bookings->links() }}
+
+                    </div>
+
+                </div>
+
+
+            @else
 
                 {{-- Empty State --}}
                 <div class="flex flex-col items-center justify-center h-64 text-gray-400">
@@ -405,7 +436,7 @@
 
                 </div>
 
-            @endforelse
+            @endif
 
         </div>
 

@@ -3,7 +3,9 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -26,5 +28,22 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof HttpException && $exception->getStatusCode() === 403) {
+
+            Log::warning('403 Forbidden', [
+                'url' => $request->fullUrl(),
+                'user_agent' => $request->userAgent(),
+                'ip' => $request->ip(),
+                'user_id' => auth()->id(),
+            ]);
+
+            return response()->view('pages.403', [], 403);
+        }
+
+        return parent::render($request, $exception);
     }
 }
