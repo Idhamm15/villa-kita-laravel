@@ -12,9 +12,9 @@ class UploadImageController extends Controller
 
     public function __construct()
     {
-        $this->uploadPath = '/storage/images';
-        $this->updatePath = 'images/';
-        // $this->uploadPath = '../../../../../home/drrcoid/villa-kita.drr.co.id/storage/images';
+        // $this->uploadPath = '/storage/images';
         // $this->updatePath = 'images/';
+        $this->uploadPath = '../../../../../home/drrcoid/villa-kita.drr.co.id/storage/images';
+        $this->updatePath = 'images/';
     }
 }
