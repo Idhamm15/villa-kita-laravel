@@ -21,6 +21,7 @@ class Booking extends Model
         'check_out',
         'total_guest',
         'discount',
+        'sub_total',
         'total_price',
         'status',
         'visitor_type',

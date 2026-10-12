@@ -11,6 +11,9 @@
         {{-- Title --}}
         <title>@yield('title')</title>
         
+        {{-- Favicon / Icon Browser --}}
+        <link rel="icon" type="image/png" href="{{ asset('img/logo.png') }}">
+        
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @vite('resources/css/app.css')
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>

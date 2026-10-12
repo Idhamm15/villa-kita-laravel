@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[LandingPageController::class, 'index']) -> name('home');
+// Route::post('/midtrans/callback', [LandingPageController::class, 'bookingPaymentCallback']) -> name('booking-payment-callback');
 Route::get('/sewa-villa', [LandingPageController::class, 'rent_villa']) -> name('sewa-villa');
 Route::get('/sewa-villa/{id}', [LandingPageController::class, 'detail_rent_villa']) -> name('detail-rent-villa');
 Route::get('/tersimpan', [LandingPageController::class, 'saved']) -> name('tersimpan');
@@ -35,9 +36,16 @@ Route::get('/trip/{id}', [LandingPageController::class, 'detail_trip']) -> name(
 Route::get('/blog', [LandingPageController::class, 'blog']) -> name('blog');
 Route::get('/blog/{slug}', [LandingPageController::class, 'detailBlog']) -> name('detail-blog');
 Route::get('/kontak', [LandingPageController::class, 'contact']) -> name('kontak');
+Route::post('/booking/store/{id}', [LandingPageController::class, 'bookingStore']) -> name('booking-store');
 Route::get('/booking/{id}', [LandingPageController::class, 'booking']) -> name('booking');
-Route::get('/booking/{id}/process', [LandingPageController::class, 'bookingProcess']) -> name('booking-process');
-Route::get('/booking/{id}/payment', [LandingPageController::class, 'bookingPayment']) -> name('booking-payment');
+Route::get('/booking/process/{orderId}', [LandingPageController::class, 'bookingProcess']) -> name('booking-process');
+Route::put('/booking/payment/store/{orderId}', [LandingPageController::class, 'bookingPaymentProcess']) -> name('booking-payment-process');
+Route::get('/booking/payment/{orderId}/', [LandingPageController::class, 'bookingPayment']) -> name('booking-payment');
+
+Route::post('/booking/validate-voucher', [
+    LandingPageController::class,
+    'validateVoucher'
+])->name('booking.validate-voucher');
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('my')->name('my.')->group(function () {

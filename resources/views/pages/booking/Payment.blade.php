@@ -15,7 +15,14 @@
                 <div class="space-y-12 lg:col-span-12">
 
                     <x-payment.payment-countdown/>
-                    <x-payment.payment-instruction/>
+                    <x-payment.payment-instruction
+                        :booking="[
+                            'paymentStatus' => $data->payment_status ?? '-',
+                            'paymentMethod' => $data->payment_method ?? '-',
+                            'paymentToken' => $data->payment_token ?? '-',
+                            'totalPrice' => $data->total_price ?? 0,
+                        ]"
+                    />
                     <x-payment.transfer-guide/>
                     <x-payment.payment-completed/>
 

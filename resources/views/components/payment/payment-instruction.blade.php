@@ -1,55 +1,70 @@
-@props([
-    'booking',
-])
-
 @php
-    $paymentStatus = strtoupper(trim($booking->payment_status ?? $booking->paymentStatus ?? ''));
+    $paymentStatus = strtoupper(trim(
+        $booking['paymentStatus'] ?? $booking['payment_status'] ?? ''
+    ));
 
-    $paymentMethod = $booking->payment_method ?? $booking->paymentMethod ?? '-';
+    $paymentMethod = strtoupper(trim(
+        $booking['paymentMethod'] ?? $booking['payment_method'] ?? '-'
+    ));
 
     $virtualAccounts = [
-        [
-            'value' => 'BCA',
+        'BCA' => [
             'label' => 'BCA Virtual Account',
+            'image' => 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg',
         ],
-        [
-            'value' => 'BNI',
+        'BNI' => [
             'label' => 'BNI Virtual Account',
+            'image' => 'https://upload.wikimedia.org/wikipedia/id/5/55/BNI_logo.svg',
         ],
-        [
-            'value' => 'BRI',
+        'BRI' => [
             'label' => 'BRI Virtual Account',
+            'image' => 'https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg',
         ],
-        [
-            'value' => 'MANDIRI',
+        'MANDIRI' => [
             'label' => 'Mandiri Virtual Account',
+            'image' => 'https://upload.wikimedia.org/wikipedia/id/9/92/Logo_Bank_Mandiri.svg',
         ],
-        [
-            'value' => 'CIMB',
+        'CIMB' => [
             'label' => 'CIMB Virtual Account',
+            'image' => 'https://upload.wikimedia.org/wikipedia/commons/1/1b/CIMB_Niaga_logo.svg',
         ],
     ];
 
-    $paymentMethodData = collect($virtualAccounts)
-        ->firstWhere('value', $paymentMethod);
-
+    $paymentMethodData = $virtualAccounts[$paymentMethod] ?? null;
     $paymentMethodLabel = $paymentMethodData['label'] ?? $paymentMethod;
+    $paymentMethodImage = $paymentMethodData['image'] ?? null;
 
-    $paymentToken = $booking->payment_token ?? $booking->paymentToken ?? null;
+    $paymentToken = $booking['paymentToken']
+        ?? $booking['payment_token']
+        ?? null;
 
-    $totalPrice = $booking->total_price ?? $booking->totalPrice ?? 0;
+    $totalPrice = (float) (
+        $booking['totalPrice']
+        ?? $booking['total_price']
+        ?? 0
+    );
 @endphp
+
 
 
 <div class="overflow-hidden bg-white shadow-lg rounded-2xl">
 
     {{-- Header --}}
     <div class="flex items-center justify-between px-6 py-5 bg-blue-100">
+        <div class="flex items-center gap-4">
+            @if ($paymentMethodImage)
+                <img
+                    src="{{ $paymentMethodImage }}"
+                    alt="{{ $paymentMethodLabel }}"
+                    class="object-contain w-16 h-10"
+                    referrerpolicy="no-referrer"
+                >
+            @endif
 
-        <h2 class="text-2xl font-bold">
-            {{ $paymentMethodLabel }}
-        </h2>
-
+            <h2 class="text-2xl font-bold uppercase">
+                {{ $paymentMethodLabel }}
+            </h2>
+        </div>
     </div>
 
 

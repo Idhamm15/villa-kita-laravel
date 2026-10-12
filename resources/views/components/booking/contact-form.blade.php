@@ -1,7 +1,7 @@
-<div class="overflow-hidden rounded-2xl bg-white shadow-lg">
+<div class="overflow-hidden bg-white shadow-lg rounded-2xl">
 
     {{-- Header --}}
-    <div class="border-b border-gray-300 p-6">
+    <div class="p-6 border-b border-gray-300">
         <h2 class="text-xl font-bold">
             Detail Kontak
         </h2>
@@ -12,20 +12,21 @@
     </div>
 
     {{-- Form Content --}}
-    <div class="space-y-5 p-6">
+    <div class="p-6 space-y-5">
 
         {{-- Nama --}}
         <div>
-            <label class="mb-2 block text-sm font-medium">
+            <label for="nameGuest" class="block mb-2 text-sm font-medium">
                 Nama Lengkap
             </label>
 
             <input
                 type="text"
+                id="nameGuest"
                 name="nameGuest"
                 value="{{ old('nameGuest') }}"
                 placeholder="Masukkan nama lengkap"
-                class="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-blue-600"
+                class="w-full px-4 py-3 transition border outline-none rounded-xl focus:border-blue-600"
             >
         </div>
 
@@ -34,31 +35,33 @@
 
             {{-- Nomor HP --}}
             <div>
-                <label class="mb-2 block text-sm font-medium">
+                <label for="phone" class="block mb-2 text-sm font-medium">
                     Nomor HP
                 </label>
 
                 <input
                     type="tel"
+                    id="phone"
                     name="phone"
                     value="{{ old('phone') }}"
                     placeholder="08xxxxxxxxxx"
-                    class="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-blue-600"
+                    class="w-full px-4 py-3 transition border outline-none rounded-xl focus:border-blue-600"
                 >
             </div>
 
             {{-- Email --}}
             <div>
-                <label class="mb-2 block text-sm font-medium">
+                <label for="email" class="block mb-2 text-sm font-medium">
                     Email
                 </label>
 
                 <input
                     type="email"
+                    id="email"
                     name="email"
                     value="{{ old('email') }}"
                     placeholder="email@example.com"
-                    class="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-blue-600"
+                    class="w-full px-4 py-3 transition border outline-none rounded-xl focus:border-blue-600"
                 >
             </div>
 
@@ -69,29 +72,31 @@
 
             {{-- Check In --}}
             <div>
-                <label class="mb-2 block text-sm font-medium">
+                <label for="checkIn" class="block mb-2 text-sm font-medium">
                     Tanggal & Jam Check In
                 </label>
 
                 <input
                     type="datetime-local"
+                    id="checkIn"
                     name="checkIn"
                     value="{{ old('checkIn') }}"
-                    class="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-blue-600"
+                    class="w-full px-4 py-3 transition border outline-none rounded-xl focus:border-blue-600"
                 >
             </div>
 
             {{-- Check Out --}}
             <div>
-                <label class="mb-2 block text-sm font-medium">
+                <label for="checkOut" class="block mb-2 text-sm font-medium">
                     Tanggal & Jam Check Out
                 </label>
 
                 <input
                     type="datetime-local"
+                    id="checkOut"
                     name="checkOut"
                     value="{{ old('checkOut') }}"
-                    class="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-blue-600"
+                    class="w-full px-4 py-3 transition border outline-none rounded-xl focus:border-blue-600"
                 >
             </div>
 
@@ -99,40 +104,42 @@
 
         {{-- Total Tamu --}}
         <div>
-            <label class="mb-2 block text-sm font-medium">
+            <label for="totalGuest" class="block mb-2 text-sm font-medium">
                 Total Tamu
             </label>
 
             <input
                 type="number"
+                id="totalGuest"
                 name="totalGuest"
                 min="1"
                 value="{{ old('totalGuest', 1) }}"
-                class="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-blue-600"
+                class="w-full px-4 py-3 transition border outline-none rounded-xl focus:border-blue-600"
             >
         </div>
 
         {{-- Catatan --}}
         <div>
-            <label class="mb-2 block text-sm font-medium">
+            <label for="note" class="block mb-2 text-sm font-medium">
                 Catatan (Opsional)
             </label>
 
             <textarea
+                id="note"
                 name="note"
                 rows="4"
                 placeholder="Contoh: Datang malam hari, membutuhkan extra bed, dll."
-                class="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-blue-600"
+                class="w-full px-4 py-3 transition border outline-none rounded-xl focus:border-blue-600"
             >{{ old('note') }}</textarea>
         </div>
 
     </div>
 
     {{-- Footer --}}
-    <div class="border-t border-gray-300 p-6">
+    <div class="p-6 border-t border-gray-300">
         <button
             type="submit"
-            class="w-full rounded-xl bg-blue-600 py-4 font-semibold text-white transition hover:bg-blue-700"
+            class="w-full py-4 font-semibold text-white transition bg-blue-600 rounded-xl hover:bg-blue-700"
         >
             Lanjut ke Pembayaran
         </button>

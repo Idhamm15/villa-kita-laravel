@@ -22,11 +22,12 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
 
-            $table->string('check_in')->nullable();
-            $table->string('check_out')->nullable();
-            $table->string('total_guest')->nullable();
-            $table->string('discount')->nullable();
-            $table->string('total_price')->nullable();
+            $table->dateTime('check_in')->nullable();
+            $table->dateTime('check_out')->nullable();
+            $table->bigInteger('total_guest')->nullable();
+            $table->bigInteger('discount')->nullable();
+            $table->bigInteger('sub_total')->nullable();
+            $table->bigInteger('total_price')->nullable();
 
             $table->string('status')->nullable();
             $table->string('visitor_type')->nullable();

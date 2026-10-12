@@ -65,10 +65,10 @@
     };
 @endphp
 
-<div class="overflow-hidden rounded-2xl bg-white shadow-lg">
+<div class="overflow-hidden bg-white shadow-lg rounded-2xl">
 
     {{-- Header --}}
-    <div class="border-b p-6">
+    <div class="p-6 border-b">
         <h2 class="text-xl font-bold">
             Ringkasan Booking
         </h2>
@@ -78,16 +78,16 @@
         </p>
     </div>
 
-    <div class="space-y-5 p-6">
+    <div class="p-6 space-y-5">
 
         {{-- PRODUCT --}}
         <div class="flex gap-4">
 
-            <div class="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
+            <div class="relative w-24 h-24 overflow-hidden shrink-0 rounded-xl">
                 <img
                     src="{{ $thumbnail }}"
                     alt="{{ $productName }}"
-                    class="h-full w-full object-cover"
+                    class="object-cover w-full h-full"
                 >
             </div>
 
@@ -101,7 +101,7 @@
                     {{ $roomName }}
                 </p>
 
-                <span class="mt-2 inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
+                <span class="inline-flex px-3 py-1 mt-2 text-xs font-medium text-blue-700 bg-blue-100 rounded-full">
                     Maks {{ $capacity }} Tamu
                 </span>
 
@@ -112,61 +112,52 @@
         <hr>
 
         {{-- STAY --}}
+        {{-- STAY --}}
         <div class="space-y-3 text-sm">
 
             {{-- Check In --}}
-            <div class="flex justify-between">
-
+            <div class="flex justify-between gap-4">
                 <div class="flex items-center gap-2 text-gray-500">
                     <i class="fa-regular fa-calendar-days"></i>
                     Check In
                 </div>
 
-                <span>
+                <span id="summaryCheckIn" class="text-right">
                     {{ $formatDate($checkIn) }}
                 </span>
-
             </div>
 
             {{-- Check Out --}}
-            <div class="flex justify-between">
-
+            <div class="flex justify-between gap-4">
                 <div class="flex items-center gap-2 text-gray-500">
                     <i class="fa-regular fa-clock"></i>
                     Check Out
                 </div>
 
-                <span>
+                <span id="summaryCheckOut" class="text-right">
                     {{ $formatDate($checkOut) }}
                 </span>
-
             </div>
 
             {{-- Total Tamu --}}
             <div class="flex justify-between">
-
                 <div class="flex items-center gap-2 text-gray-500">
                     <i class="fa-solid fa-users"></i>
                     Total Tamu
                 </div>
 
-                <span>
-                    {{ $totalGuest }} Orang
+                <span id="summaryGuest">
+                    {{ old('totalGuest', $totalGuest) }} Orang
                 </span>
-
             </div>
 
             {{-- Lama Menginap --}}
             <div class="flex justify-between">
+                <span>Lama Menginap/Trip</span>
 
-                <span>
-                    Lama Menginap/Trip
-                </span>
-
-                <span>
+                <span id="summaryNights">
                     {{ $nights }} Malam
                 </span>
-
             </div>
 
         </div>
@@ -176,9 +167,9 @@
         {{-- VOUCHER --}}
         <div>
 
-            <div class="mb-3 flex items-center gap-2">
+            <div class="flex items-center gap-2 mb-3">
 
-                <i class="fa-solid fa-ticket text-orange-500"></i>
+                <i class="text-orange-500 fa-solid fa-ticket"></i>
 
                 <h3 class="font-semibold">
                     Voucher
@@ -190,17 +181,18 @@
 
                 <input
                     type="text"
+                    id="voucherCode"
                     name="voucherCode"
                     value="{{ old('voucherCode', $voucherCode) }}"
                     placeholder="Masukkan kode voucher"
-                    class="flex-1 rounded-lg border px-4 py-2 text-sm outline-none focus:border-blue-500"
+                    class="flex-1 px-4 py-2 text-sm border rounded-lg outline-none focus:border-blue-500"
                 >
 
                 <button
                     type="submit"
-                    name="apply_voucher"
+                    id="applyVoucher"
                     value="1"
-                    class="rounded-lg bg-orange-500 px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600"
+                    class="px-4 py-2 text-sm font-semibold text-white bg-orange-500 rounded-lg hover:bg-orange-600"
                 >
                     Gunakan
                 </button>
@@ -212,86 +204,63 @@
         <hr>
 
         {{-- PRICE --}}
+        {{-- PRICE --}}
         <div class="space-y-3">
 
             {{-- Harga --}}
-            <div class="flex justify-between">
+            <div class="flex justify-between gap-4">
+                <span>Harga Villa/Trip</span>
 
-                <span>
-                    Harga Villa/Trip
-                </span>
-
-                <span>
+                <span id="summaryPrice">
                     {{ $formatCurrency($price) }}
                 </span>
-
             </div>
 
             {{-- Durasi --}}
             <div class="flex justify-between">
+                <span>Lama Menginap/Trip</span>
 
-                <span>
-                    Lama Menginap/Trip
-                </span>
-
-                <span>
+                <span id="summaryDuration">
                     {{ $nights }} x
                 </span>
-
             </div>
 
             {{-- Subtotal --}}
-            <div class="flex justify-between">
+            <div class="flex justify-between gap-4">
+                <span>Subtotal</span>
 
-                <span>
-                    Subtotal
-                </span>
-
-                <span>
+                <span id="summarySubtotal">
                     {{ $formatCurrency($subtotal) }}
                 </span>
-
             </div>
 
             {{-- Service Fee --}}
-            <div class="flex justify-between">
+            <div class="flex justify-between gap-4">
+                <span>Biaya Layanan</span>
 
-                <span>
-                    Biaya Layanan
-                </span>
-
-                <span>
+                <span id="summaryServiceFee">
                     {{ $formatCurrency($serviceFee) }}
                 </span>
-
             </div>
 
             {{-- Discount --}}
-            <div class="flex justify-between">
+            <div class="flex justify-between gap-4">
+                <span>Diskon</span>
 
-                <span>
-                    Diskon
-                </span>
-
-                <span class="text-green-600">
+                <span id="summaryDiscount" class="text-green-600">
                     -{{ $formatCurrency($discount) }}
                 </span>
-
             </div>
 
             <hr>
 
             {{-- Total --}}
-            <div class="flex justify-between text-lg font-bold text-blue-600">
+            <div class="flex justify-between gap-4 text-lg font-bold text-blue-600">
+                <span>Total</span>
 
-                <span>
-                    Total
-                </span>
-
-                <span>
+                <span id="summaryTotal">
                     {{ $formatCurrency($total) }}
                 </span>
-
             </div>
 
         </div>
