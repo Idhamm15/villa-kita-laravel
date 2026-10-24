@@ -288,20 +288,20 @@
 
                         <x-booking.summary
                             :booking="[
-                                'bookingCode' => 'VKT-20260923-001',
-                                'checkIn' => '2026-09-25 14:00',
-                                'checkOut' => '2026-09-27 12:00',
+                                'bookingCode' => '-',
+                                'checkIn' => '-',
+                                'checkOut' => '-',
                                 'totalGuest' => 4,
                                 'discount' => 50000,
                                 'voucherCode' => '',
                             ]"
                             :product="[
                                 'id' => '1',
-                                'name' => 'Villa Harmoni Tegal',
+                                'name' => $data->name ?? '-',
                                 'thumbnail' => 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800',
-                                'roomName' => 'Villa',
-                                'capacity' => 8,
-                                'price' => 750000,
+                                'roomName' => $data->type ?? '-',
+                                'capacity' => $data->max_guest ?? '-',
+                                'price' => $data->price ?? '-',
                                 'serviceFee' => 25000,
                             ]"
                         />
