@@ -426,7 +426,7 @@
                     </p>
 
                     <a
-                        href="{{ url('/booking/' . 1) }}"
+                        href="{{ url('/booking/' . $data->id) }}"
                         class="inline-flex items-center justify-center w-full gap-2 px-6 py-3 mt-8 text-white transition bg-orange-500 rounded-xl hover:bg-orange-600"
                     >
                         <i class="fa-regular fa-calendar-check"></i>
